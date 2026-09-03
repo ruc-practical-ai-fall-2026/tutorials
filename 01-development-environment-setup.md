@@ -782,4 +782,685 @@ ls --help
 
 As noted before, all of these commands are thoroughly documented online. You are always allowed to Google them and to Google errors you get in this course. Finding documentation online and using it to solve problems independently is a critical skill to learn academically and professionally. You can also use AI tools to generate these commands, as long as you are reviewing the output. Reviewing LLM output is especially important for critical commands that move or delete files!
 
+## Python
+
+### Introduction
+
+Python is a general purpose programming language ubiquitous in data science and machine learning. Python is known for its flexibility and insistence that there should be preferably only one way "right" to write a given program within the idioms of the language. Python programmers often call the best way to write a program using Python idioms the most *pythonic* way to write the program. Python is also known for enabling programs to be written in a manner that is easy and fun for those who are well versed in the language. An introduction to Python and programming in general is out of the scope of this tutorial but will be covered in detail later in this course.
+
+### Installation
+
+Python can be installed by following the online instructions [here](
+https://www.python.org/downloads/).
+
+To install Python click `Download` and run the installer.
+
+### Installing Additional Python Packages
+
+Python comes with a package manager called `pip` which is used to install new Python packages. The following commands install `numpy`, `pandas`, and `matplotlib`. These are three ubiquitous Python packages in data science which are used extensively in this course.
+
+```bash
+pip install numpy
+pip install pandas
+pip install matplotlib
+```
+
+**Note**: It is possible to have multiple or many versions of Python and pip installed on your system at once. It is your responsibility to know which version you are using at a given time and to ensure that the paths, commands, and packages you are using are compatible with that version. Later in this tutorial, we will introduce tools to manage Python versions and dependencies.
+
+### Advantages and Disadvantages of Python
+
+Python is useful for quickly implementing programs and in many cases implementing production systems. Like any programming language, it has advantages and disadvantages. An in depth discussion of programming language design is outside the scope of this tutorial, but at a high level, it is important to understand that Python is an *interpreted* programming language. This means that Python code for programs you write is run line-by-line in another computer program (the Python interpreter) which is downloaded for you when you download Python.
+
+What that means practically is that another program sits between Python code and the way the computer executes the instructions provided in a Python program. Python has many incredible features which prevent these extra computations from slowing down program execution. Python also manages system memory for the user, which takes this burden off the developer and means it is safer to use than languages like C and C++ with respect to avoiding system memory usage errors. Despite its powerful features though, Python is not always as fast or as customizable at the hardware level as a compiled language like C++, which is prepared for execution by a compiler that runs before the program executes rather than interpreted by another layer of software. Importantly, a Python program might not always take the same amount of time to run by default, even if running on a fast computer with no other programs competing for the computer's resources. This makes Python a less ideal choice for running in real time.
+
+Many international standards forbid using Python (and many other programming languages) in safety critical systems. Simultaneously, many international standards also forbid using C and C++, or some features of those languages, due to memory safety issues. Some programming languages, such as Rust, are gaining popularity to address these issues, but these are outside the scope of this tutorial and course. Deep discussion of safety standards and the differences between interpreted and compiled languages is further outside the scope of this tutorial, but it is important to remember that interpreted languages like Python are often preferred for offline data analysis (e.g., playing back data from a self-driving car for analysis) while compiled languages are preferred for speed and control of execution (e.g., for running real time in the sensor processing system of a self-driving car). Safety critical systems often use specialized languages, or standards compliant subsets of embedded languages, like C. In professional practice, the choice of programming languages to use for each component of a safety-relevant or safety critical system is an important design decisions which must be made judiciously with consideration to applicable standards, laws, customer requirements / approvals, and engineering constraints.
+
+### Anaconda
+
+[Anaconda](https://www.anaconda.com/) is a popular Python distribution that is ubiquitous in the data science community. You are welcome to use it in this class. Be aware that when using Anaconda you need to make sure you install packages to Anaconda's distribution of Python rather than installing them to another distribution of Python that may be on your system. If Anaconda is your preferred Python distribution then you also should make sure Anaconda appears first on your system `$PATH`. See the next section to learn about the `$PATH` and how to keep track of where different versions of Python are on your system.
+
+#### Additional Considerations if Using Anaconda Professionally
+
+Anaconda is a large (several GB) collection of Python tools and packages. The idea behind Anaconda is to make sure you have everything you need to use Python, which makes it especially popular in the data science community. Miniconda is a smaller collection (less than 1 GB). Keep in mind that if you are building a production system professionally, you should not have code you do not need on that system.
+
+Having extra code on a system means extra maintenance, extra memory usage, and extra risk due to maintenance, dependencies, and cybersecurity. To avoid this, you should import only the packages you directly need to make your product work, rather than using a distribution of Python that preemptively includes many packages you *might* need for convenience. In professional environments, you will be required to provide a software bill of materials (SBOM) that lists every software dependency in your system. You want to keep your SBOM as small as possible to make auditing your system for security as expedient as possible. Further, Anaconda is not free to use commercially. So there may be license fees to consider if using it professionally, which then must be baked into the cost of your product.
+
+#### Conda vs. Anaconda
+
+Anaconda is a distribution of Python that comes with many packages you may need. Conda is a package manager, which you can use to keep track of multiple versions of Python. You do not need to use both together. You can use Conda without Anaconda to keep track of multiple Python versions without also using Anaconda. Conda is free to use professionally. Managing multiple versions of Python is covered later in this tutorial.
+
+## Understanding Your $PATH Variable and Other System Configuration Considerations
+
+### Introduction
+
+Your shell will look for programs in the folders specified in your $PATH variable in the order they appear. If you are typing `python --version` on the command line and not seeing the version you just installed (e.g., you just installed Python 3.12 but `python --version` returns 3.8.3) then it is likely that your operating system is looking for Python in a folder that may contain an older version of Python before it looks in the folder that contains the newer version. This can be due to a number of system configuration issues.
+
+This will search your path along with any built-in shell commands you have, or any aliases you have set up and return the path that you are referencing when you enter `python` in your shell.
+
+A common reason that `python` does not reference your desired version is the system `$PATH` variable. You can view what directories are in your `$PATH` using the following command.
+
+```bash
+echo $PATH | tr ':' '\n'
+```
+
+The first part of this command (`echo $PATH`) prints your `$PATH` to the screen. The second part of the command (`| tr ':' '\n'`) exchanges all the `:` characters for newlines so you can see the paths more clearly.
+
+If this command confirms that your OS is looking for Python in the wrong place, then you need to edit your `$PATH` variable.
+
+If you are running Unix / Linux / Mac, or using Git Bash, you can find tutorials online for changing your PATH in bash, by editing `.bash_profile`, `.bashrc`, `.profile` or other similar configuration files. A good explanation of this can be found [here](https://unix.stackexchange.com/questions/26047/how-to-correctly-add-a-path-to-path).
+
+### Windows Considerations
+
+If you are using windows, be sure to note the following considerations, which may be different from MacOS or Linux based environments.
+
+#### Command Line Caution
+
+If you are on Windows and NOT using these tools, it is possible to edit your `$PATH` on the windows command line (different than PowerShell or GitBash) but this is not recommended, as a mistake can break your system and be difficult to fix. It is *recommended* to use Git Bash or another terminal emulator on Windows to manage your path. If you must edit your `$PATH` on Windows without using Git Bash or a terminal emulator, the OS also provides built in tools.
+
+#### Graphical Editor
+
+To edit the `$PATH` on Windows *without* changing Git Bash files, do the following steps.
+
+1. Search “Advanced system settings”
+2. Go to “Advanced”
+3. Click “Environment Variables…”
+4. Click “Path” and click “Edit…”
+5. Click “New”
+6. Enter the path to the folder you want on your PATH.
+
+#### Difference Between Git Bash `$PATH` and Windows System `$PATH`
+
+Git Bash inherits the Windows `$PATH` when it starts, but Bash startup files such as `.bashrc` can add or modify entries for that Bash environment. Changes made in `.bashrc` generally affect Git Bash sessions only, while changes made through Windows Environment Variables can affect programs launched throughout Windows.
+
+### Understanding Where Python is Installed on Your System
+
+Like any computer program, Python lives in a folder on your system. Depending on your system, there are many different locations Python can be installed. Depending on what versions of Python you have installed, there may be multiple locations Python is installed on your system. To understand how you are interacting with Python, it is important to known where Python is installed. To find out where Python is installed you can do any of the following.
+
+* Note where the Python installer said it is installing Python.
+* On Windows, type Python in your search bar and click "Open file location" for the version you are interested in.
+* On any OS, use the following commands to understand your environment configuration.
+
+First, to check authoritatively what you are referencing when you type `python` in your shell, use `command -v` in Bash.
+
+```bash
+command -v python
+```
+
+Note that you can find all areas where Python resides on your system (as long as they are in your `$PATH`!) with the following command.
+
+```bash
+which -a python python3
+```
+
+You can find other versions of Python by exploring these paths. Use `cd` to move to the area shown by the output of the command above and look for other versions of Python there. Note that some of these may be symlinks (i.e., shortcuts). We can use the following command to see where these symlinks point.
+
+```bash
+ls -al $(which -a python python3)
+```
+
+This runs the `which` command in a *sub-shell* and inserts its output in the current shell, effectively applying the `ls -al` command to each path returned by `which`. This will generate a long format listing of all the areas output by `which`, some of which may be shortcuts. On Windows, you may notice some of these shortcuts point to an installer. This installer will open a dialogue to install the latest Python. On Mac, you may notice that `python` or `python3` reference a common area on your system, something like `/usr/local/bin/python3`. Then this link points to the version of Python that runs when you type `python` or `python3`.
+
+
+### Updating Your Path
+
+If you do need to change your `$PATH`, the recommended means to do this is by editing files such as `.bash_profile` or `.bashrc`. Editing `.bash_profile` (covered later in this tutorial) is usually the preferred method since it is easy to change, but you should know how to use your OS' graphical tool as well since `.bash_profile` only applies when using `Git Bash` or `Bash` and there are times when you may wish to add something to your path and have it show up on your path all the time.
+
+When adding items to your path in a configuration file like `.bash_profile`, pay specific attention to whether you are prepending or appending the item, since order matters here!
+
+To prepend an item (so it takes precedence over other items):
+
+```bash
+export PATH="/path/to/new/program:$PATH"
+```
+
+To append an item (so other items take precedence over it):
+
+```bash
+export PATH="$PATH:/path/to/new/program"
+```
+
+### Applying `$PATH` Updates
+
+After you edit your path, you can run the following to apply the updates:
+
+```bash
+hash -r
+```
+
+### General Cautions
+
+**WARNING**: be careful editing your PATH! Changing your PATH can change the way some programs will function. Beware of removing lines that other programs may rely on.
+
+**NOTE**: In this course, Python virtual environments will often determine which Python interpreter and packages are used. Before changing your system $PATH, make sure you have activated the correct virtual environment.
+
+
+## Managing Multiple Versions of Python: Basics
+
+One of the most common causes of confusion when setting up a Python development environment is having multiple versions of Python installed on your system. If you've installed a version of Python for a prior class, for personal use, or for any other reason, and then installed another version of Python for this class, you may have multiple versions of Python on your system.
+
+This will not cause problems in this class (or at all) as long as you understand how to check which version of Python you are running at any given time and as long as you install required packages (i.e., anything you install with `pip` such as `matplotlib`) to the Python version you want to use for this course.
+
+There are several related but distinct concepts that are important to understand and keep track of as your navigate setting up your environment.
+
+* **Python installation/version**: A particular installation of Python, such as Python 3.12.
+* **Python interpreter**: The actual executable program that runs your Python code.
+* **Virtual environment**: An isolated Python environment associated with a particular Python interpreter and its own set of installed packages.
+* **Project dependencies**: The Python packages and versions required for a particular project.
+
+There are many ways you will use and interact with Python in this class. We will cover how to determine which interpreter or environment you are using in each of those cases.
+
+### When Using Python on the Command Line
+
+When using Python on the command line, you can see which version you are interacting with using the `--version` option.
+
+```bash
+python --version
+```
+
+However, knowing the version number does not necessarily tell you **which Python installation** is running. You can ask your shell which `python` command it found using:
+
+```bash
+command -v python
+```
+
+You can also ask Python itself where the currently running interpreter is located:
+
+```bash
+python -c "import sys; print(sys.executable)"
+```
+
+This last command is particularly useful when troubleshooting because it tells you directly which Python executable is actually running.
+
+Recall that when you type a command such as:
+
+```bash
+python
+```
+
+your shell searches through the directories listed in your `$PATH` variable in order until it finds an executable named `python`. You can inspect your path with:
+
+```bash
+echo $PATH | tr ':' '\n'
+```
+
+If multiple Python installations exist on your system, the version whose executable is found first will normally be the one that runs.
+
+The following commands provide a troubleshooting workflow that tells you (in order) what command your shell resolves, which version of Python it reports, and the actual location of the running interpreter.
+
+```bash
+command -v python
+python --version
+python -c "import sys; print(sys.executable)"
+```
+
+#### (Optional) Modifying Your Path
+
+You may also manually modify your `$PATH` to change which Python installation is found first. Understanding how this works is useful when diagnosing development environment problems or when setting up systems and containers. However, manually rearranging your `$PATH` is generally not the preferred way to manage Python versions for individual projects. Later in this section, we will see how to use `uv` to manage Python versions and project-specific environments more reliably.
+
+If you do need to manually modify your path, start by inspecting it to determine if if it actually the source of the problem (e.g., wrong Python version occurs first on the `$PATH`). Do this with `echo $PATH | tr ':' '\n'`.
+
+If the Python version you want is behind another Python version in your `$PATH` or just not on your path at all, you will need to add its location to the beginning of your path. Do this is by editing your `.bash_profile` file (or similar configuration file for your shell). The `.bash_profile` file is run by Bash or Git Bash every time you start the shell. It will run any commands you put there (like adding a folder to your path) for you.
+
+You can see if you have a `.bash_profile` with the following command.
+
+```bash
+ls -al ~ | grep '\.bash_profile'
+```
+
+If this returns nothing, make one with the command `touch ~/.bash_profile` and open it in a text editor. Type the following inside that file then save and exit.
+
+```bash
+# Type this inside your .bash_profile file
+PYTHON_PATH=/YOUR/DESIRED/PYTHON/PATH/HERE
+export PATH="$PYTHON_PATH/Scripts:$PATH"
+export PATH="$PYTHON_PATH:$PATH"
+```
+
+Be sure to write the path to where you found the version of Python you want to use. For example, for a username "john" on Windows, a `.bash_profile` might look as follows.
+
+```bash
+# Example .bash_profile
+PYTHON_PATH=/c/Users/john/AppData/Local/Programs/Python/Python312
+export PATH="$PYTHON_PATH/Scripts:$PATH"
+export PATH="$PYTHON_PATH:$PATH"
+```
+
+This will run automatically every time you start your shell. If you want the changes to happen immediately, you can update your shell with this new profile using the `source` command.
+
+```bash
+source .bash_profile
+```
+
+You can check that your path was edited correctly by doing the following.
+
+```bash
+echo $PATH | tr ':' '\n' | head -n 5
+```
+
+This will show the first five folders in your PATH. You should verify the top two entries refer to your desired Python version. Now the `which python` and `python --version` commands should reference the desired versions.
+
+**Note for MacOS:** When using Python on the command line in MacOS, the location where the `python` command points is usually a symlink to the actual location Python is installed. If your Python version is not what you expect it to be, you already tried editing your `$PATH` and you are using MacOS, this may be because the symlink is pointing to the wrong Python version. Though this is highly unlikely and should not be a first troubleshooting step, see [this](https://stackoverflow.com/questions/6819661/python-location-on-mac-osx) Stack Overflow answer to understand how to fix this if it happens.
+
+### When Using VS Code
+
+When using VS Code (or another IDE), it is important to understand that the Python interpreter selected by the IDE may not always be the same interpreter that your shell initially uses.
+
+In VS Code, you can select your desired Python interpreter using the following steps:
+
+1. Open the Command Palette using `Ctrl` + `Shift` + `P`.
+2. Type `Python: Select Interpreter`.
+3. Select your desired Python interpreter.
+
+When working inside a project that contains a virtual environment such as `.venv`, VS Code will normally detect that environment and make it available as an interpreter option.
+
+If you are unsure which Python interpreter VS Code is using, you can run:
+
+```python
+import sys
+
+print(sys.version)
+print(sys.executable)
+```
+
+The `sys.executable` value tells you exactly which Python interpreter is executing your code.
+
+A full tutorial on getting set up with VS Code is included below.
+
+### When Using a Jupyter Notebook
+
+Jupyter notebooks introduce another layer where it is especially important to know which Python interpreter you are using.
+
+A notebook executes code through a *Jupyter kernel*. The Python kernel selected for a notebook may be different from the Python interpreter selected elsewhere in VS Code or from the Python interpreter used by your shell.
+
+When using a Jupyter notebook inside VS Code, you can see the selected kernel in the top-right corner of the notebook.
+
+If you want to change the version VS Code uses for that notebook:
+
+1. Click the current kernel in the top-right corner.
+2. Choose the option to select another kernel.
+3. Select the Python environment you want the notebook to use.
+
+You can verify the interpreter from inside the notebook itself by running:
+
+```python
+import sys
+
+print(sys.version)
+print(sys.executable)
+```
+
+When troubleshooting a package that imports successfully in your shell but not in a notebook, checking `sys.executable` in both places is often a good first step. If the paths are different, you are probably using different Python environments.
+
+A full tutorial on Jupyter is provided below.
+
+### When Installing Packages with pip
+
+When installing a Python package, it is important that the package is installed into the Python environment in which you intend to use it.
+
+A common source of confusion is that commands such as `python` and `pip` can sometimes resolve to different Python installations.
+
+To be sure you are using the correct `pip`, when using `pip` directly, it is preferable to invoke it through the Python interpreter. For example:
+
+```bash
+python -m pip install mpmath
+```
+
+This tells Python to run the `pip` module belonging to this Python interpreter and use it to install the package. If multiple versions of Python are available as separate commands, you can similarly specify the interpreter:
+
+```bash
+python3.12 -m pip install mpmath
+```
+
+This is generally more reliable than relying on commands such as:
+
+```bash
+pip
+pip3
+pip3.12
+```
+
+because the relationship between the `python` and `pip` commands now made explicit.
+
+You can check which Python environment a package will be installed into by first running:
+
+```bash
+python -c "import sys; print(sys.executable)"
+```
+
+To see all the installations of pip on your system (that your $PATH can find) and where any shortcuts may be pointing to, use the following command.
+
+```bash
+ls -l $(which -a pip pip3)
+```
+
+Later in the course, we will generally **not install project dependencies manually with `pip`**. Instead, we will use `uv` to manage the project's virtual environment and dependencies for us. However, understanding `python -m pip` remains useful for troubleshooting and for understanding what tools such as `uv` are helping automate.
+
+## Managing Multiple Versions of Python: Helpful Tools
+
+It is important to understand where Python is installed on your system, how your shell finds commands, how to check which Python interpreter you are interacting with, and where Python packages are installed. You can do this manually, or you can use one of many available tools. Managing your Python versions manually is may be helpful initially in an educational setting so you do not loose track of the functions the tools are performing for you.
+
+In a professional setting however, and even later in this course, you will often need to keep track of many projects using many versions of Python. Using various tools to do this is standard in any academic or professional team. In this course, we will first learn enough about Python installations, `$PATH`, interpreters, packages, and virtual environments to understand what is happening at each layer. We will then move on to use **uv** to manage Python environments and project dependencies and **Development Containers** to manage the broader development environment.
+
+### Overview of Some Python Version and Dependency Management Options
+
+Imagine you are working on a team with several, or perhaps many, projects. One project might require Python 3.12 while another still requires Python 3.11. One project might use a particular version of a Python library such as PyTorch that is incompatible with a version required by another project. Projects may also need to run on other developers' computers, continuous integration servers, cloud systems, or production servers.
+
+Python development tools address different portions of these problems. Some manage Python versions, some manage isolated environments, some manage project dependencies, and some perform several of these functions together. Choosing a dependency-management approach is ultimately a design decision made at the project or team level. While detailed software architecture considerations are outside the scope of this section, it is important to be aware of the tools available and to understand the tools selected for use in this class.
+
+Some common options you might encounter include:
+
+* **`venv`**: `venv` is Python's built-in tool for creating *virtual environments*. Each virtual environment uses a particular Python interpreter while maintaining its own independent set of installed Python packages. You can learn more in the [Python documentation](https://docs.python.org/3/library/venv.html).
+
+  We will not generally create environments using `python -m venv` directly in this course. Instead, `uv` will create and manage project virtual environments for us. However, the underlying concept of a virtual environment is important to understand.
+
+* **pyenv**: pyenv is a tool specifically designed to install and switch between multiple versions of Python. It is widely used and you may encounter it in other projects or professional development environments. You can learn more on the [pyenv GitHub page](https://github.com/pyenv/pyenv).
+
+  We will not require pyenv in this course because `uv` can also manage the Python versions needed by our projects.
+
+* **conda**: conda is an environment and package management system commonly encountered in scientific computing, data science, and machine learning. Unlike Python's `venv`, conda environments can also manage software dependencies outside of Python itself. You can learn more in the [conda documentation](https://docs.conda.io/).
+
+* **uv**: `uv` is the primary Python project and dependency-management tool we will use in this class. It can manage Python installations, create virtual environments, install and manage project dependencies, and maintain information about the versions of packages required by a project.
+
+  This is the main dependency-management tool we will use in this class. We will review a dedicated tutorial on `uv` later in this guide.
+
+* **Containers**: Containers such as [Docker](https://www.docker.com/) containers enable software to run inside an isolated process space and file system. This gives the application a controlled environment without requiring an entirely separate physical computer or a complete virtual machine.
+
+  Containers function differently than virtual machines (e.g., Virtual Box). Containers use less resources from the host machine by running software in its own process space and file system, *without* emulating every operation that an operating system would perform, saving memory and computing time by sharing more of the host operating system's underlying resources.
+
+
+  Containers are useful for packaging software together with the operating-system-level tools and configuration it requires. This goes beyond a Python virtual environment, which primarily isolates the Python interpreter and Python packages.
+
+  Containers will be used often later in this course. Lectures, assignments, and projects may be provided with a **Development Container**, specified in a `.devcontainer` folder in the associated Git repository. The Development Container can specify the operating system, command-line tools, Python installation, VS Code extensions, and other software required for the project.
+
+  Development Containers can be used remotely through GitHub Codespaces or locally using software such as Docker Desktop.
+
+### Understanding Virtual Environment Activation
+
+When a virtual environment is created, it contains its own Python interpreter and locations for installing Python packages. We will automate this with `uv` but it is important to understand that it is happening
+
+A common convention is to store the environment for a project in a directory named:
+
+```text
+.venv
+```
+
+For example, `uv` can create one using:
+
+```bash
+uv venv
+```
+
+One way to use that environment is to *activate* it. On macOS, Linux, and Bash environments, this commonly looks like:
+
+```bash
+source .venv/bin/activate
+```
+
+On Windows PowerShell, it commonly looks like:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Activating an environment does not replace or modify the other versions of Python installed on your computer. Instead, activation modifies your current shell environment so that commands such as `python` resolve to the executables inside the virtual environment before searching elsewhere.
+
+After activating an environment, you can confirm this using:
+
+```bash
+command -v python
+python -c "import sys; print(sys.executable)"
+```
+
+When using `uv`, explicitly activating the environment is not always necessary. For example:
+
+```bash
+uv run python
+```
+
+runs Python using the environment associated with the project.
+
+### Proper Use of Containers
+
+Containers are a powerful tool for automating development environment set up and ensuring that software can integrate with multiple development environments, by abstracting away the details of the host machine which may conflict across projects (e.g., one project assumes a key configuration file is on one location and another project assumes another) from the software application that needs to run.
+
+However, it is noted that containers are not a replacement for good dependency management in Python. Developing a container with poorly managed Python dependencies will yield just as unreliable of a system (with more complexity) as a pure Python package with poorly managed dependencies would have. A common anti-pattern is to add numerous unneeded dependencies to a container since the container will ensure these dependencies do not conflict with those of other applications that need to run on the system. While the container will indeed achieve this deconfliction, it will not mitigate the risks associated with adding unneeded software or unneeded complexity to the system.
+
+Further, remember when using containers, you still must understand what tool you are interacting with Python through, in addition to knowing where that version of Python is installed, and how to confirm you are indeed interacting with the version of Python you think you are! This will help you avoid unexpected errors in both academic and professional settings. When using multiple tools at once, you *must* understand the entire stack of tools that sits between you and the hardware you are developing on, from the base operating system, to the container, to the Python virtual environment, to the specific Python interpreter that is translating your instructions (code) into action, *you should be able to list the tools that sit between what you are asking the computer to do and what the computer actually does*.
+
+For example, a project used in this course might involve a stack similar to:
+
+```text
+Host Operating System
+        ↓
+Docker
+        ↓
+Development Container
+        ↓
+Project Virtual Environment (.venv)
+        ↓
+Python Interpreter
+        ↓
+Installed Python Packages
+        ↓
+Your Python Program
+```
+
+VS Code and Jupyter may provide additional interfaces through which you interact with this stack.
+
+If you cannot be sure what tools sit between your instructions and the computer's actions, then no matter how certain you are that you provided the instructions that implement your customer's requirements, you will never be certain that your system actually will carry out those instructions correctly. While you do not need to be an expert in every layer (one of the goals of these layers is to enable us to build off work others have done before to develop high level applications without consideration for low-level details), you do need to know what layers you are using at any given time and be aware of their proper use cases and limitations.
+
+When using multiple development tools at once, you should understand these major layers that sit between you and the hardware you are developing on. You do not need to be an expert in the implementation of every layer. In fact, one purpose of these abstractions is to allow developers to build higher-level applications without needing to understand every low-level implementation detail.
+
+At a minimum, when troubleshooting a Python project you should be able to answer questions such as:
+
+* Am I working on my host operating system or inside a container?
+* Which Python interpreter is executing my code?
+* Am I using a virtual environment?
+* Which virtual environment am I using?
+* Where are my project's dependencies defined?
+* Am I running Python from a shell, VS Code, or a Jupyter kernel?
+* Do those tools all point to the environment I expect?
+
+Being able to answer these questions will make Python development environment problems easier to diagnose and ultimately give you more control of the machines that will be executing your code.
+
+## Introduction to `uv`
+
+[`uv`](https://docs.astral.sh/uv/) is a tool for managing Python versions, virtual environments, project dependencies, and Python projects. We will use `uv` throughout this course to help ensure everyone is using compatible versions of Python and the required Python packages.
+
+A typical `uv` project uses a `pyproject.toml` file to describe the project and its dependencies, a `.venv` directory containing the project's virtual environment, and a `uv.lock` file that records the exact dependency versions selected for the project.
+
+### Creating a New Project
+
+You can create a new Python project using:
+
+```bash
+uv init my-project
+```
+
+Then enter the new project directory:
+
+```bash
+cd my-project
+```
+
+You can also initialize the directory you are already working in:
+
+```bash
+uv init
+```
+
+`uv init` creates a `pyproject.toml` and other files used to describe and manage the project.
+
+### Managing Python Versions
+
+`uv` can install Python versions for you:
+
+```bash
+uv python install 3.12
+```
+
+You can see the Python versions available to `uv` with:
+
+```bash
+uv python list
+```
+
+For a project, you can specify the desired Python version using:
+
+```bash
+uv python pin 3.12
+```
+
+This records the requested version in a `.python-version` file so that `uv` can consistently select the appropriate Python interpreter when working with the project.
+
+### Adding and Removing Packages
+
+To add a Python package to a project, use:
+
+```bash
+uv add numpy
+```
+
+For example, a machine learning project might require:
+
+```bash
+uv add numpy matplotlib scikit-learn
+```
+
+`uv` will add these dependencies to the project's `pyproject.toml`, determine compatible package versions, and update the project's environment.
+
+To remove a dependency:
+
+```bash
+uv remove numpy
+```
+
+In a `uv` project, prefer `uv add` and `uv remove` over manually installing project packages with `pip`. This keeps the project's declared dependencies synchronized with the environment.
+
+### Running Python in the Project Environment
+
+One of the most useful `uv` commands is:
+
+```bash
+uv run
+```
+
+`uv run` executes a command using the Python environment associated with the current project.
+
+For example:
+
+```bash
+uv run python
+```
+
+starts the project's Python interpreter.
+
+You can run a Python script with:
+
+```bash
+uv run python my_script.py
+```
+
+or simply:
+
+```bash
+uv run my_script.py
+```
+
+You can also run other commands installed as project dependencies:
+
+```bash
+uv run pytest
+```
+
+When you use `uv run`, `uv` checks that the project's virtual environment exists and is up to date before executing the command.
+
+### Synchronizing an Existing Project
+
+Frequently in this course you will clone an existing Git repository rather than create a new project yourself. In this case, the repository may already contain a `pyproject.toml` and `uv.lock`.
+
+After cloning the repository, run:
+
+```bash
+uv sync
+```
+
+`uv sync` creates or updates the project's virtual environment so that it matches the dependencies specified by the project.
+
+A common workflow will be:
+
+```bash
+git clone REPOSITORY_URL
+cd REPOSITORY_NAME
+
+uv sync
+uv run python
+```
+
+You can then run scripts or other project commands using `uv run`.
+
+### The `.venv` Directory
+
+By default, `uv` stores the project's virtual environment in a directory named:
+
+```text
+.venv
+```
+
+**NOTE**: You generally should not modify this directory manually or commit it to Git. The environment can be recreated from the project's dependency information when needed. You may activate this environment manually:
+
+```bash
+source .venv/bin/activate
+```
+
+or, in Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+After activation, commands such as:
+
+```bash
+python
+```
+
+will normally refer directly to the Python interpreter inside `.venv`. However, activation is often unnecessary when using `uv`. Instead of activating the environment and then running:
+
+```bash
+python my_script.py
+```
+
+you can simply run:
+
+```bash
+uv run my_script.py
+```
+
+### Useful `uv` Commands
+
+Some of the commands you will use most often are:
+
+```bash
+uv init                  # Initialize a Python project
+uv python list           # Show available Python versions
+uv python install 3.12   # Install Python 3.12
+uv python pin 3.12       # Specify Python 3.12 for the project
+
+uv add numpy             # Add a project dependency
+uv remove numpy          # Remove a project dependency
+uv sync                  # Synchronize the project's environment
+
+uv run python            # Run the project's Python interpreter
+uv run script.py         # Run a Python script
+uv run pytest            # Run pytest in the project environment
+
+uv tree                  # Display the project's dependency tree
+```
+
+You do not need to memorize all of these commands. More importantly, understand what `uv` is managing for you:
+* The Python interpreter
+* The project's virtual environment
+* The project's Python dependencies
+
 
