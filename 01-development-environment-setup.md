@@ -1462,3 +1462,9 @@ You do not need to memorize all of these commands. More importantly, understand 
 * The Python interpreter
 * The project's virtual environment
 * The project's Python dependencies
+
+## Final Notes
+
+Now that our development environment is set up we are ready to begin coding! This would be a good time to practice many of the commands for Git and Bash / Git Bash that were covered earlier in this tutorial.
+
+Note that setting up your development environment can often be a frustrating part of joining any new professional software team. This is because the process can be different on different systems and different teams and individuals may prefer different tools. If the project is structured professionally though, team members should be able to contribute using their preferred environments. It only will get easier from here once we can start to use all the useful tools we just installed!
