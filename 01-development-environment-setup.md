@@ -1462,5 +1462,3 @@ You do not need to memorize all of these commands. More importantly, understand 
 * The Python interpreter
 * The project's virtual environment
 * The project's Python dependencies
-
-
