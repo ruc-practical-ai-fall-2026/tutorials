@@ -126,7 +126,7 @@ GitHub will create the assignment repository under your account and take you to 
 
 Your assignment repository is private, so the instructor cannot see it until you explicitly give them access.
 
-You should do this immediately after creating the repository.
+You should do this immediately after creating the repository. Your instructor's GitHub name is `mauro-j-sanchirico`.
 
 On your repository's GitHub page:
 
