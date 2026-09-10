@@ -4,7 +4,7 @@
 
 Assignments for this course are distributed using GitHub repositories.
 
-Each assignment begins as a public template repository maintained by the instructors. You will create your own private repository from this template under your personal GitHub account, give the instructor access to your repository, clone it to your development environment, complete the assignment, and push your work back to GitHub.
+Each assignment begins as a public template repository maintained by the instructor. You will create your own private repository from this template under your personal GitHub account, give the instructor access to your repository, clone it to your development environment, complete the assignment, and push your work back to GitHub.
 
 The general process is:
 
@@ -16,7 +16,7 @@ The general process is:
 6. Commit and push your work.
 7. Submit the assignment.
 
-Your assignment repository belongs to you and will remain in your GitHub account after the course ends. For projects you would like to link to on your resume, they will persist in your GitHub account after the course ends.
+Your assignment repository belongs to you and will remain in your GitHub account after the course ends. For projects you would like to link to on your resume, they will persist in your GitHub account after the course ends. Remember you need to make them private upon creation and during the semester, but can set them to public later if you want others to see them.
 
 ## Creating a GitHub Account
 
@@ -73,7 +73,7 @@ ruc-practical-ai-fall-2026/assignment-01-python
 
 Your repository:
 
-jsmith/assignment-01-python
+jsmith/assignment-01-python-jsmith
 ```
 
 The first repository is maintained by the instructor. The second repository is your private copy of the assignment and is where you should do your work.
@@ -98,12 +98,12 @@ This creates a new repository containing the starting files for the assignment. 
 
 ## Creating Your Assignment Repository
 
-When GitHub asks where to create the repository, select your **personal GitHub account** as the owner. Use the same assignment name unless the assignment instructions specify otherwise.
+When GitHub asks where to create the repository, select your **personal GitHub account** as the owner. Use the same assignment name with your name or user name appended to it unless the assignment instructions specify otherwise.
 
 For example:
 
 ```text
-assignment-01-python
+assignment-01-python-jsmith
 ```
 
 Select:
@@ -115,7 +115,7 @@ for the repository visibility.
 Your finished repository might therefore be:
 
 ```text
-jsmith/assignment-01-python
+jsmith/assignment-01-python-jsmith
 ```
 
 Click **Create repository**.
@@ -124,7 +124,7 @@ GitHub will create the assignment repository under your account and take you to 
 
 ## Adding the Instructor as a Collaborator
 
-Your assignment repository is private, so the instructor cannot see it until you explicitly give them access.
+Your assignment repository is private, so your instructor(s) or collaborators cannot see it until you explicitly give them access.
 
 You should do this immediately after creating the repository.
 
@@ -133,7 +133,7 @@ On your repository's GitHub page:
 1. Click **Settings**.
 2. Select **Collaborators** or **Collaborators and teams**.
 3. Click **Add people**.
-4. Search for the instructor's GitHub username provided in class.
+4. Search for the instructor's GitHub username (`mauro-j-sanchirico`) or other instructor user names provided in class.
 5. Select the correct account.
 6. Send the invitation.
 
@@ -141,7 +141,7 @@ The instructor must accept the invitation before they can access the repository.
 
 You only need to give the instructor access to the assignment repository. You are not giving the instructor access to your GitHub account or to your other private repositories.
 
-Do not wait until the assignment deadline to complete this step just in case something goes wrong!
+Do not wait until the assignment deadline to complete this step (just in case something goes wrong)!
 
 ## Cloning Your Assignment
 
@@ -158,13 +158,14 @@ git clone <repository-url>
 For example:
 
 ```bash
-git clone git@github.com:jsmith/assignment-01-python.git
+git clone git@github.com:jsmith/assignment-01-python-jsmith.git
 ```
+If you have not done so already, it is a good idea to make a folder somewhere easily accessible to hold your projects for this course. Use this folder for cloning repositories.
 
-Change into the newly created directory:
+After you clone the repository, make sure you change into the newly created directory that shares the repository name:
 
 ```bash
-cd assignment-01-python
+cd assignment-01-python-jsmith
 ```
 
 You can now open this directory in VS Code or whatever development environment you are using.
@@ -280,7 +281,7 @@ Confirm that:
 3. The commit appears on GitHub before the assignment deadline.
 4. The instructor has been added as a collaborator and can access the repository.
 
-If the commit exists only on your computer and has not been pushed, the assignment has not been submitted. If the repository is private and the instructor does not have access to it, the assignment cannot be graded.
+If the commit exists only on your computer and has not been pushed, the assignment has not been submitted. If the repository is private and your instructor does not have access to it, the assignment cannot be graded.
 
 ## Making Changes After Submission
 
@@ -313,7 +314,7 @@ ruc-practical-ai-fall-2026/assignment-01-python
 while your repository might be:
 
 ```text
-jsmith/assignment-01-python
+jsmith/assignment-01-python-jsmith
 ```
 
 You should do your work in the second (personal) repository.
