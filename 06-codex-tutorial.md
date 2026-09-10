@@ -178,7 +178,7 @@ Just as Git facilitates human collaboration, it gives you a safe way to experime
 
 If you prefer a terminal environment, Codex can also be used directly from a terminal through the **Codex CLI**.
 
-The VS Code extension will be the easiest interface for many tasks in this course, but the CLI is worth installing. It is particularly useful when working in remote systems, DevContainers, GitHub Codespaces, or other environments where your terminal is already the center of your workflow.
+Many students find the VS Code extension the easiest interface for many tasks in this course, but you are welcome to use either the extension or the CLI. The CLI is particularly useful when working in remote systems, DevContainers, GitHub Codespaces, or other environments where it is already common to work in a terminal. Try both the extension and the CLI out and see what you like best!
 
 ### Linux and macOS
 
@@ -196,10 +196,10 @@ codex --version
 
 ### Windows
 
-From PowerShell, the standalone Codex installer can be run with:
+In VS Code, open the terminal. Click the dropdown arrow next to the `+` icon and select PowerShell to spawn a new shell. From PowerShell, the standalone Codex installer can be run with:
 
 ```powershell
-irm https://chatgpt.com/codex/install.ps1 | iex
+powershell -ExecutionPolicy ByPass -c "irm https://chatgpt.com/codex/install.ps1 | iex"
 ```
 
 After installation, open a new terminal and check:
@@ -210,7 +210,17 @@ codex --version
 
 If you are using **WSL**, install Codex from inside your WSL Linux environment using the Linux installation command instead.
 
+If you are using GitBash on Windows, install Codex via PowerShell and then use via GitBash. Note that you might need to restart your shell or restart VS Code after you install Codex.
+
+
+### Installing ChatGPT for Desktop
+
+Though it is not required, you might also wish to install ChatGPT for Desktop with Codex. Note that installing ChatGPT for Desktop is *not* the same as installing the VS Code Codex extension and is not the same as installing the Codex CLI. These are all different interfaces that provide different ways to use and interact with the GPT family of models. As always, try out different tools and workflows to see what you like.
+
+You can install ChatGPT Desktop with Codex following the instructions here: [https://chatgpt.com/codex/](https://chatgpt.com/codex/).
+
 ### Starting Codex from the Terminal
+
 
 Navigate to one of your project directories:
 
@@ -224,11 +234,7 @@ Then start Codex:
 codex
 ```
 
-The first time you run it, follow the instructions to sign in with your ChatGPT account.
-
-Once Codex starts, you can communicate with it directly from the terminal.
-
-For example:
+The first time you run it, follow the instructions to sign in with your ChatGPT account. Once Codex starts, you can communicate with it directly from the terminal. For example:
 
 ```text
 Explain this repository to me. Do not change anything yet.
@@ -238,9 +244,9 @@ Because you launched Codex from the project directory, it can inspect files in t
 
 ## Using Codex Inside a DevContainer
 
-Much of the development work in this course may take place inside a VS Code DevContainer.
+Some of the development work in this course may take place inside a VS Code DevContainer.
 
-Remember that a DevContainer is effectively a separate Linux computer. Programs installed on your host operating system are not automatically installed inside the container.
+Remember that a DevContainer is effectively a separate Linux computer that will feel as if it has its own file system and operating system. Programs installed on your host operating system are not automatically installed inside the container!
 
 The VS Code Codex extension can still provide an integrated interface to your development workflow. If you also want the `codex` command available **inside the container's terminal**, install the CLI from that terminal:
 
@@ -254,7 +260,8 @@ Then check:
 codex --version
 ```
 
-This same principle applies to GitHub Codespaces because a Codespace is also a remote development environment.
+This will be automated for you when using standard Development Containers in this course. You can automate it yourself if setting up your own Development Container. Development Container setup will be covered later in the course.
+
 
 Whenever you are unsure where a command is installed, remember the distinction between your:
 
@@ -262,28 +269,25 @@ Whenever you are unsure where a command is installed, remember the distinction b
 * DevContainer or Codespace,
 * and Python virtual environment.
 
-These are different layers of your development environment.
+These are different layers of your development stack. Know where you are operating and understand what layer your commands are affecting.
 
-## A Good Basic Codex Workflow
+## Codex Workflow and Use Cases in this Course
 
-A simple workflow for using Codex on course assignments is:
+A simple workflow for using Codex on course assignments is as follows.
 
-1. Read and understand the assignment yourself.
-2. Open the complete repository in VS Code.
-3. Run the existing code and tests yourself.
-4. Make a Git checkpoint.
-5. Use Codex as a companion to ask questions, explore ideas, or help generate specific pieces of code.
-6. Review and edit anything Codex produces.
-7. Check documentation or other authoritative sources when needed to confirm that generated code or technical claims are correct.
-8. Run the program and tests yourself.
-9. Make sure you can explain your solution and the major decisions behind it.
-10. Commit the final version with Git.
+1. Open the complete repository in VS Code. Read and understand the assignment yourself.
+2. Run the existing code and tests yourself (if applicable).
+3. Make a Git checkpoint.
+4. Use Codex to ask questions, explore ideas, or help generate specific pieces of code.
+5. Review and edit the generated code. Check documentation or other authoritative sources when needed to confirm that generated code or technical claims are correct.
+6. Run the program and tests yourself. Make sure you can explain your solution and the major decisions behind it.
+7. Commit the final version with Git.
 
 This reflects a key tenet of the ethical use of AI in this course: **understanding core material before applying AI to help expedite generation of tools and results**.
 
 The aim of the course is to develop students who are capable of directing AI tools and other human teammates. That goal is not met if LLMs are used to complete entire assignments without human oversight.
 
-## Appropriate Uses of Codex
+### Appropriate Uses of Codex in this Course
 
 Examples of appropriate uses of Codex in this course include:
 
@@ -296,11 +300,9 @@ Examples of appropriate uses of Codex in this course include:
 
 The common thread is **human oversight, review, and technical judgment**.
 
-## Inappropriate Uses of Codex
+### Inappropriate Uses of Codex in this Course
 
-Use of Codex that prevents you from learning or understanding the underlying material is not appropriate for this course.
-
-Examples include:
+Use of Codex that prevents you from learning or understanding the underlying material is not appropriate for this course. Examples include:
 
 * asking Codex to perform an entire assignment for you,
 * accepting generated code without reading or understanding it,
@@ -312,106 +314,66 @@ Examples include:
 
 Students who attempt to complete assignments entirely with LLMs often find that AI tools applied without thought and judgment result in low scores, even on seemingly simple problems.
 
-## The Veterinary Dentist Law
+## Tips and Warnings
 
-Throughout this course, we will use an analogy called the **Veterinary Dentist Law** when discussing the ethical use of AI.
+### Tip: Iterate and Ask for Explanations or Refinements
 
-To perform oral surgery on our pets, being qualified only as a veterinarian or only as a dentist is insufficient. Both areas of expertise are required.
-
-Similarly, applying AI responsibly to important problems in science and engineering requires expertise in both:
-
-* the AI techniques being applied, and
-* the domain in which those techniques are being applied.
-
-Using AI technologies in a way that immediately violates this principle, or puts you on a trajectory toward violating it in the future, is considered a violation of the academic integrity policy for this course.
-
-For Codex, this means that the tool should help you develop your expertise rather than substitute for it.
-
-Asking Codex to help implement a technique that you understand, checking the result, and refining it is appropriate.
-
-Asking Codex to solve an entire assignment that you do not understand is not.
-
-## Ask for Explanations, Not Just Answers
-
-One of the most valuable uses of Codex in this course is as an interactive companion for learning.
-
-If you encounter unfamiliar code, ask about it:
-
+One of the most valuable uses of Codex in this course is as an interactive companion for learning. If you encounter unfamiliar code, you can ask about it:
 ```text
 Explain this function line by line.
 ```
-
-If you encounter a Python feature you do not recognize:
-
 ```text
-What does this syntax mean? Show me a simpler example before explaining
-how it is used here.
+What does this syntax mean? Show me a simpler example before explaining how it is used here.
 ```
-
-If Codex generates code you do not understand:
-
-```text
-Explain this implementation assuming I understand basic Python but have
-not seen this technique before.
-```
-
 You can also challenge its suggestions:
-
 ```text
 Why did you choose this implementation instead of using a for loop?
 ```
-
 or:
-
 ```text
 What are the disadvantages of this approach?
 ```
 
-These kinds of interactions use AI to strengthen your understanding rather than bypass it.
+These kinds of interactions use AI to strengthen your understanding of the course material, while still building the foundations that you need to hone your ability to review important algorithms and apply good scientific and engineering judgement.
 
-## Codex Can Be Confidently Wrong
+### Warning: AI Tools Can Be Confidently Wrong
 
-LLMs can make statements that sound professional and convincing while still being incorrect.
-
-Codex may:
+LLMs can make statements that sound professional and convincing while still being incorrect. (Note that some humans can do this too - use caution when working with these individuals!) An AI agent might do any of the following, all while making documentation, comments, etc. appear correct and professional.
 
 * misunderstand an assignment requirement,
 * use a library incorrectly,
-* invent a function that does not exist,
+* reference a function that does not exist,
 * introduce unnecessary complexity,
 * accidentally break previously working code,
 * modify files that did not need to change,
 * use outdated coding practices,
 * or produce code that works for one example but fails for others.
 
-Do not assume that confidence in an AI-generated explanation implies correctness.
-
-When appropriate, verify generated code using:
-
+Do not assume that confidence in an AI-generated explanation implies correctness. When appropriate, frequently verify generated code using:
 * official documentation,
 * tests,
 * small experiments,
 * course material,
 * and other authoritative sources.
 
-If uncertainty remains, state that uncertainty rather than presenting an unverified AI-generated claim as fact.
+If uncertainty remains, discuss with your instructor, classmates or other collaborators as appropriate!
 
-## AI Does Not Replace Debugging
+### Warning: AI Does Not Replace Debugging
 
-When your program fails, resist the temptation to immediately ask Codex to fix everything.
+When your program fails, resist the temptation to immediately ask Codex to fix everything, e.g.,
 
-First look at the error yourself.
+```text
+Not working - pls fix
+```
 
-Try to identify:
+First look at the error yourself. Try to identify:
 
 * which line failed,
 * what type of error occurred,
 * what values were involved,
 * and what you expected the program to do instead.
 
-Then use Codex to help investigate.
-
-For example:
+Then use Codex to help investigate, e.g.,
 
 ```text
 I am getting this error when I run the program:
@@ -421,31 +383,35 @@ I am getting this error when I run the program:
 Explain what the error means first. Do not change the code yet.
 ```
 
-Once you understand the problem, you can ask Codex to help fix it.
+Once you understand the problem, you can ask Codex to fix it. You can likely provide better context to Codex as well. For example::
 
-This keeps the debugging process aligned with the goals of the course: using AI to accelerate development while continuing to build your own technical ability.
+```text
+The normalize_inputs function is throwing an error. The expected behavior is [fill in expected behavior]. Change the input arguments to reflect this expectation.
+```
 
-## Keep AI-Generated Work Professional
+This enables you to debug quickly without introducing other changes (which may break other parts of your code in fixing the part that was originally broken), while continuing in building your own understanding of the debugging process.
 
-AI-generated output frequently has recognizable stylistic habits. These are not automatically wrong, but they can make technical work less professional when used carelessly.
+### Tip: Display Professionalism Code and Documentation
 
-Examples include:
+AI-generated output frequently has recognizable stylistic habits. This is is not necessarily a problem, depending on the prompting approach, some of these idioms may appear unprofessional or distracting.
 
-* unnecessary bolding,
-* excessive use of dashes,
+Examples of AI-idioms include:
+
+* unnecessary bolding in documentation,
+* excessive use of dashes in writing,
 * repetitive phrases such as "Here's why,"
 * constructions such as "It's not X. It's Y.",
 * emojis in contexts where they are inappropriate,
 * excessive sectioning,
-* and overly polished language that obscures uncertainty or technical nuance.
+* and overly-polished language that obscures uncertainty or technical nuance.
 
-Edit generated material so that it matches the context and your own technical writing style.
+Edit generated material so that it matches the context and your own technical writing style and the tone required for your application. For example, while emojis might introduce a fun style to a readme for a personal project, it would be a grave stylistic error to have emojis in a technical report about a safety mishap on a critical system.
 
-The same principle applies to code. AI-generated code should conform to the programming practices, formatting conventions, and standards discussed in class.
+Software and documentation best practices will be covered later in this course, as will strategies for reviewing and iterating on prompts to ensure that the correct practices for the application are adhered to.
 
-## Protect Sensitive Information
+### Warning: Protect Sensitive Information
 
-Do not intentionally give an AI coding tool passwords, authentication tokens, private keys, or other sensitive credentials.
+**Do not give an AI coding tool passwords, authentication tokens, private keys, or other sensitive credentials.**
 
 Be particularly careful with files such as:
 
@@ -455,28 +421,21 @@ Be particularly careful with files such as:
 
 or files containing API keys and login credentials.
 
-Secrets should generally not be committed to Git repositories either.
+Similarly, secrets and sensitive information should generally not be committed to Git repositories.
 
-If you accidentally expose a real credential, assume that credential has been compromised and replace it.
+If you accidentally expose a real credential, assume that credential has been compromised and replace it!
 
-## Course Expectations
+## Summary of Course Expectations
 
-Use of LLMs and AI coding tools is encouraged in this course.
+Use of LLMs and AI coding tools is encouraged in this course. However, you are responsible for the work that you submit and the grade that it receives. On a longer time scale, you are responsible for shaping yourself into an individual worthy of holding the responsibility of writing code that will be used beneficially in society, perhaps for many years to come. Be kind to your teammates, be kind to your future self, and be kind to your community by shaping yourself into an individual worthy of this responsibility.
 
-However, you remain responsible for the work that you submit.
-
-You should be able to:
-
-* explain the major parts of your solution,
+In support of this goal, you should always be able to:
+* explain the parts and subparts of your solution,
 * describe why the approach works,
 * modify the code when requirements change,
 * interpret errors produced by the program,
 * evaluate whether an AI-generated suggestion is reasonable,
 * identify when generated material is incorrect or unprofessional,
-* and locate authoritative sources when further verification is required.
-
-Exams and assignments are designed to test student understanding rather than memorization or the ability to reproduce AI-generated output.
-
-The objective is not to avoid AI tools. The objective is to become technically capable of using them well.
-
-Codex should therefore be treated as another development tool alongside Python, Git, VS Code, testing, debugging, and documentation. Learning to direct an AI coding agent effectively, review its work, and know when not to trust it is part of modern technical practice.
+* locate authoritative sources when further verification is required,
+* have a meaningful and enriching discussion with peers and collaborators to resolve issues,
+* feel that you are on a path toward becoming a better practitioner of your craft and able to use the full software stack to build applications that benefit society!
