@@ -1430,7 +1430,7 @@ will normally refer directly to the Python interpreter inside `.venv`. However, 
 ```bash
 python my_script.py
 ```
-
+.
 you can simply run:
 
 ```bash
