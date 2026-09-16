@@ -26,7 +26,7 @@ If you already have a ChatGPT account, you can skip this section. Otherwise, do 
 4. Complete any account verification requested during signup.
 5. Sign into ChatGPT at least once before continuing.
 
-Codex is available with ChatGPT accounts, although different account types may have different usage limits.
+Codex is available with ChatGPT accounts, although different account types may have different usage limits. Codex has a free tier and additional [paid tiers](https://chatgpt.com/codex/pricing/). Codex also offers special [pricing for students](https://chatgpt.com/codex/students/).
 
 ## API Keys
 
