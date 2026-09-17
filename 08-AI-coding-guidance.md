@@ -6,21 +6,33 @@ This document briefly reviews practical tips in using AI for software developmen
 
 ### Take Responsibility for Your Work
 
-Regardless of the tools you use, you are responsible for your code and the relationship the products you create have with other humans on your team, and in society. Remain accountable to your fellow humans and own the decisions made about your products that might affect others. Empathize with those impacted by your decisions and strive to make decisions that create beneficial software for the world.
+Regardless of the tools used, you are responsible for your code and the relationship the products you create have with other humans on your team and in society. Remain accountable to your fellow humans and own the decisions made about your products that might affect others. Empathize with those impacted by your decisions and strive to make decisions that create beneficial software for the world.
 
 ### Maintain and Strengthen Your Agency
 
-Control your tools. Do not allow them to control you. You are responsible for your work, and you know how to empathize with those who depend on it. A tool might not.
+Control your tools. Do not allow them to control you. You are responsible for your work and you know how to empathize with those who depend on it. A tool might not.
+
+While an AI tool is trained on billions of tokens, amassing to more text and data than you can ever process in a lifetime, you, your teammates, and your users are the product of billions of years of evolution, including the trials and failures of every life that ever lived and every ancestor you have all had since the dawn of life itself.
+
+Shared intuition for the way the universe works is embedded in your DNA. Strive to stand on top of that history, and use your intuition to shape yourself and the products you create to be worthy of the trust your fellow humans place in you.
 
 ### Strengthen and Maintain your Own Self-awareness
 
-Know what you know and what you do not. Beware of prompting models to do things that you do not know how to do. Do not prompt models to do things you do not know how to test.
+Know what you know and what you do not.
+
+**Beware** of prompting models to do things that *you do not know how to do*.
+
+**Do not** prompt models to do things *you do not know how to test*.
 
 ### Honor Your Job's Charter and Scope
 
-When using AI tools, stay within the charter of your job or educational responsibilities. There is a critical difference between an electrical engineer using AI to accelerate a circuit design task and a software engineer using AI to design a novel chemical. In the former case, a trained electrical engineer will have the judgement to determine if the circuit is safe and appropriate for the application. In the latter case, there might not be a chemical engineer on the team to determine if the result is safe and appropriate for the application. Similarly, if a junior electrical engineer uses AI to automate the work of a senior or principal electrical engineer, this could become problematic if the work is not reviewed by an engineer with sufficient training and certifications to assess if work of that degree of complexity is safe and appropriate for the application.
+When using AI tools, stay within the charter of your job or educational responsibilities. There is a critical difference between an electrical engineer using AI to accelerate a circuit design task and a software engineer using AI to design a novel chemical.
 
-AI can enable individuals with little expertise in a domain to generate results and products that *look* like a plausible solution. However, domain expertise and thorough testing are required to determine the difference between results that *look* viable and results that *are* viable. Managers and technical leaders must build organizational structures with appropriate talent mix, senior review, talent pipelines to enforce sr. review, and schedule work to enable review by the appropriate expert.
+In the former case, a trained electrical engineer will have the judgement to determine if the circuit is safe and appropriate for the application. In the latter case, there might not be a chemical engineer on the team to determine if the result is safe and appropriate for the application.
+
+Similarly, if a junior electrical engineer uses AI to automate the work of a senior or principal electrical engineer, this could become problematic if the work is not reviewed by an engineer with sufficient training and certifications to assess if work of that degree of complexity is safe and appropriate for the application.
+
+AI can enable individuals with little expertise in a domain to generate results and products that *look* like a plausible solution. However, domain expertise and thorough testing are required to determine the difference between results that *look* viable and results that *are* viable. Managers and technical leaders must ensure appropriate talent mix, senior review, talent pipelines to build reviewers, and sufficient schedule to enable review by the appropriate experts.
 
 ### Know What Your Time is Worth
 
@@ -40,11 +52,13 @@ When performance breaks down, you might be doing something out of distribution. 
 
 ### Ensure Prompt Specificity is Proportional to Novelty
 
-Novel tasks can be broken down into smaller tasks, which themselves are likely routine. When you see degraded performance due to novelty (e.g., asking a model for an algorithm that truly does not exist in the state of the art), break the problem down into smaller parts and prompt each part individually. You can likely one-shot prompt a web frontend. You might not be able to one-shot prompt a cure for a disease! More powerful models have stronger abilities with less specific prompts, but do not have unlimited intelligence. Synthesis and analysis are the ingredients of innovation.
+Novel tasks can be broken down into smaller tasks, which themselves are likely routine. When you see degraded performance due to novelty (e.g., asking a model for an algorithm that truly does not exist in the state of the art), break the problem down into smaller parts and prompt each part individually. You can likely one-shot prompt a web frontend.
+
+You might not be able to one-shot prompt a cure for a disease! More powerful models have stronger abilities with less specific prompts, but do not have unlimited intelligence. Synthesis and analysis are the ingredients of innovation.
 
 ### Balance the Known and the Unknown
 
-Strive to work at the edge of the known and the unknown where progress will be evident and there will be a foundation to build off of. You will likely not get far prompting AI for the cure to a disease or the meaning of life. You might get far prompting a model to help with designing an algorithm to detect a pattern in an MRI though!
+Strive to work at the edge of the known and the unknown where progress will be evident and there will be a foundation to build off of. You will likely not get far prompting AI for the cure to a disease or the meaning of life. You might get far prompting a model to help with designing an algorithm to detect a pattern in an MRI though! This might be a small step towards curing a disease.
 
 ## Risk Management and Review
 
@@ -52,25 +66,25 @@ Strive to work at the edge of the known and the unknown where progress will be e
 
 For critical tasks, on top of human review, use redundant strategies to support review and correct implementation:
 
-* Ask multiple models for solutions and compare them
-* Ask a model to critique another model's solution
-* Use both AI and human review together
+* Ask multiple models for solutions and compare them.
+* Ask a model to critique another model's solution.
+* Use AI and human review together.
 
 ### Review the Diff
 
-Do not judge an AI coding agent only by whether the program appears to work at the end. Review what changed.
+Do not judge work done by an AI coding agent only by whether the program appears to work at the end. Review what changed.
 
-Use git diff, your IDE's source control view, or similar tools to inspect modifications before accepting them. Look for unnecessary changes, deleted functionality, new dependencies, duplicated code, changes outside the requested scope, and code that you do not understand.
+Use git diff, your IDE's source control view, or similar tools to inspect changes before accepting them. Look for unnecessary changes, deleted functionality, new dependencies, duplicated code, changes outside the requested scope, and code that you do not understand.
 
-AI tools make it inexpensive to generate large amounts of code. This makes disciplined review more important, not less important. A hundred lines of unnecessary code generated in seconds are still a hundred lines that someone has to test and maintain.
+AI tools enable fast generation of code. This increases the need for disciplined review. A hundred lines of unnecessary code generated in seconds are still a hundred lines that must be tested and maintained in the future.
 
 ### Keep Changes Small and Reversible
 
-Prefer small, logically coherent changes over enormous edits. Ask the agent to implement one feature, fix one bug, or perform one refactor at a time when practical.
+Prefer small changes corresponding to a logical feature over large changes. Ask the agent to implement one feature, fix one bug, or perform one refactor at a time when practical.
 
-Use version control aggressively. Commit known-working states before substantial changes and create logical commits as work progresses. If an experiment fails, reverting a small change is much easier than untangling a large collection of unrelated modifications.
+Use version control. Commit working states before substantial changes and create commits as work progresses. If an experiment fails, undoing a small change is much easier than untangling a large collection of unrelated changes.
 
-Small changes are also easier to review, test, understand, and explain. This principle is valuable whether the code is written by a human or an AI.
+Small changes are also easier to review, test, understand, and explain. This principle is valuable whether the code is written by a human or an AI tool.
 
 ### Test Early and Often
 
@@ -86,24 +100,24 @@ Unit tests do not replace end-to-end tests. Systems that pass unit tests can sti
 
 ### Avoid False Urgency
 
-Just because AI tools are available and can expedite work does not mean deadlines need to move closer artificially. Deliver when the customer needs it, do not move fast for speed's sake. Slow is smooth and smooth is fast.
+Just because AI tools are available and can expedite work does not mean deadlines need to move closer artificially. Deliver when the customer needs it. Do not move fast for speed's sake. Slow is smooth and smooth is fast.
 
 ## Chat Strategies
 
 ### Change Chats Often
 
-Use new chats for new tasks to create a logical break between tasks. Provide the model context for the task at hand and do not mix tasks if not needed. When you finish a feature, reach a logical breakpoint, or notice Codex carrying irrelevant assumptions, change to a new chat. Do not use chats as the primary source of persistent project knowledge. Durable project context should live in repository artifacts such as `AGENTS.md`, documentation, skills, tests, and other appropriate files.
+Use new chats for new tasks to create a logical break between tasks. Provide the model context for the task at hand and do not mix tasks if not needed. When you finish a feature, reach a logical breakpoint, or notice Codex carrying irrelevant assumptions, change to a new chat. Do not use chats as the primary source of persistent project memory. Long-term project context should live in repository artifacts such as `AGENTS.md`, documentation, skills, tests, and other appropriate files.
 
 ### Give Each Chat One Clear Objective
 
-Starting a chat with the intent of implementing a file loader and adding tests provides more manageable scope than mixing implementation, debugging, refactoring, documentation, and multiple features into a single chat. This mixing can lead to less predictable behavior as context and assumptions across tasks mix together. Working on one clear objective at a time before moving onto the next is solid practice for human work as well as AI-enabled work!
+Starting a chat with the intent of implementing a file loader and adding tests provides more manageable scope than mixing implementation, debugging, refactoring, documentation, and multiple features into a single chat. This can lead to less predictable behavior as context and assumptions across tasks mix together. Working on one clear objective at a time before moving onto the next is solid practice for human work as well as AI-enabled work!
 
 ### Provide Constraints and Context Early in a Chat
 
 Avoid vague prompts like `"build a deep learning framework"` and `"fix all errors"`. Provide context on what you are trying to do. For example, the prompts,
 
 ```text
-"I have an image dataset. I want to design a deep learning framework to classify the images. It must be able to add new classes quickly. Use representation learning strategies to enable few-shot addition of new classes."
+"I have an image dataset. I want to design a deep learning framework to classify the images. It must be able to add new classes quickly. Use representation learning strategies to enable few-shot addition of new classes. Recommend an approach before making changes."
 ```
 
 ```text
@@ -124,21 +138,21 @@ before making any changes. Understand your repository first, be confident you kn
 
 ### Provide a Definition of Done
 
-Give the model an objective stopping condition.
+Give the model a definition of done.
 
-For a coding task, "done" might mean that the requested behavior is implemented, existing tests pass, new behavior has appropriate tests, ruff passes, no unrelated files were changed, and the resulting diff has been reviewed.
+For a coding task, the "definition of done" might mean that the requested behavior is implemented, existing tests pass, new behavior has tests, ruff passes, no unrelated files were changed, and the resulting diff has been reviewed.
 
-Without a definition of done, an agent can continue making changes simply because additional improvements are possible. Clear completion criteria reduce unnecessary work and make autonomous workflows safer and more predictable.
+Without a definition of done, an agent can continue making changes simply because additional improvements are possible. Completion criteria reduce unnecessary work, simplify implementations and result in less unnecessary code to maintain.
 
 ## Cost and Token Management
 
 ### Save Tokens
 
-Despite what the hype tells you, tokens are a resource. You are not a bad scientist or engineer for using less of them. In fact, in engineering, using fewer resources within cost and schedule constraints is considered good practice, not bad practice. Do not design workflows to use excessive tokens. Do not implement token quotas. If management implements token quotas, run.
+Despite what the hype tells you, tokens are a resource to be used judiciously. You are not a bad scientist or engineer for using less of them. In fact, in engineering, using fewer resources within cost and schedule constraints is considered good practice rather than bad practice. Do not design workflows to use excessive tokens. Do not implement *minimum* token quotas. If management implements minimum token-use quotas, run!
 
 ### Use the Smallest Model for the Job
 
-While it is tempting to want to use larger models to tackle harder problems, strive to engineer harnesses and workflows that use tokens efficiently. Use smaller models when able. Tokens, and the costs associated, will often be the limiting factor in AI projects. Treat them like an engineering resource, not something with unlimited budget.
+While it is tempting to want to use larger models to tackle harder problems, strive to engineer harnesses and workflows that use tokens efficiently. Use smaller models when able. Tokens, and the costs associated, will often be the limiting factor in AI projects. Treat them like an engineering resource, not as an unlimited supply.
 
 ### Use Different Models for Different Jobs
 
@@ -146,37 +160,37 @@ While modern AI tools are truly multi-task, it is still possible to get better r
 
 ## Harness Engineering
 
-### Use AGENTS.md for Project Context
+### Use `AGENTS.md` for Project Context
 
-Use AGENTS.md to provide persistent instructions that should apply whenever an AI coding agent works in your repository. Good candidates include repository structure, coding conventions, preferred tools, build and test commands, architectural constraints, and important rules that might not be obvious from reading the code alone.
+Use `AGENTS.md` to provide persistent instructions that should apply whenever an AI coding agent works in your repository. Good candidates include repository structure, coding conventions, preferred tools, build and test commands, architectural constraints, and important rules that might not be obvious from reading the code alone.
 
-Keep AGENTS.md concise! Do not try to explain your entire project in one file. Treat it like a map that points the agent toward the right information. If your project has detailed architecture documentation, testing instructions, design documents, or development procedures, keep these in appropriate files and reference them from AGENTS.md.
+Keep `AGENTS.md` concise! Do not try to explain your entire project in one file. If your project has architecture documentation, testing instructions, design documents, or development procedures, keep these in appropriate files and reference them from `AGENTS.md`.
 
-Remember that every instruction you add consumes context and creates another instruction that must remain correct as the repository evolves. More instructions are not necessarily better instructions. Prefer a small number of clear, durable rules over a giant instruction manual.
+Remember that every instruction added consumes context and creates another instruction that must remain correct as the repository evolves. As with code, more natural language instructions are not necessarily better instructions. Prefer a small number of rules that will remain stable over the long-term life of the project over more complex that might change more frequently.
 
 ### Use SKILL.md or .agents/skills to Define Repeatable Tasks
 
-Use skills for workflows that you expect an agent to perform repeatedly. If you frequently ask an agent to perform the same multi-step task, consider defining the procedure once rather than repeatedly explaining it in chats.
+Use skills for workflows that cannot be readily scripted (e.g., involve natural language processing, summarization, or other tasks appropriate for AI) that you expect an agent to perform repeatedly. If you frequently ask an agent to perform the same multi-step task, consider defining the procedure once as a skill to save time.
 
 For example, a project might contain a skill for creating a new Python module. The skill could instruct the agent to create the module in the correct directory, follow the project's naming conventions, add unit tests, run ruff, run the relevant tests, and report the files that changed.
 
-Keep skills focused. A skill that describes one repeatable task is easier to understand, test, maintain, and reuse than a giant skill that attempts to describe every possible development activity. As with normal software, compose simple pieces into larger workflows when needed.
+Keep skills focused. A skill that describes one repeatable task is easier to understand, test, maintain, and reuse than an unnecessarily large skill that attempts to describe every possible development process. As with code, compose simple skills into larger modular workflows when needed.
 
 ### Chain Steps Together
 
 When making API calls, employ separate API calls, to separate models and tools as needed, for different tasks in a workflow. For example, have one call to generate code, another call to sanitize it, another to use the code to make a plot, and another to put the plot in a report.
 
-Do not assume that the best model for one step is the best model for every step. Breaking workflows into explicit stages also creates natural places to test intermediate outputs. If one stage produces an incorrect result, it is much easier to identify and repair the failure than when one enormous prompt attempts to perform the entire workflow at once.
+Do not assume that the best model for one step is the best model for every step. Breaking workflows into explicit stages also creates natural places to test intermediate outputs. If one stage produces an incorrect result, it is much easier to identify and repair the failure than when one prompt attempts to perform the entire workflow at once.
 
 Where practical, make the interface between stages explicit. Files, structured data, tests, schemas, and clearly defined inputs and outputs make agentic workflows easier to inspect and less dependent on ambiguous conversational context.
 
 ### Keep Important Knowledge Outside the Chat
 
-Chats are working context, not your project's source of truth. Important decisions, requirements, architecture, procedures, and conventions should live in the repository where both humans and AI tools can find them.
+Use chats to convey working context rather than to document a project. Do not use chats as a long-term source of documentation. Important decisions, requirements, architecture, procedures, and conventions should live in the repository where both humans and AI tools can find them.
 
-Do not depend on a particular conversation remaining available forever. If a chat discovers something important about the project, move that knowledge into the appropriate README, design document, AGENTS.md, skill, test, comment, or other durable artifact.
+Do not employ chats as if they will be available to all project contributors forever. If a chat reveals something noteworthy, move that knowledge into the appropriate README, design document, `AGENTS.md`, skill, test, comment, or other artifact rather than leave it in the chat.
 
-A healthy repository should become easier for both humans and AI agents to understand as work progresses.
+A healthy repository should become *easier* for both humans and AI agents to understand as work progresses.
 
 ## Development Environment
 
@@ -184,13 +198,13 @@ A healthy repository should become easier for both humans and AI agents to under
 
 AI coding agents are significantly more useful when they can build, run, test, lint, and inspect the project themselves. Maintain a development environment that makes these operations straightforward and repeatable.
 
-Document the commands required to install dependencies, run the application, execute tests, lint the code, and perform other common development operations in the appropriate repository documentation, `AGENTS.md`, or skills. Where appropriate, use tools such as pyproject.toml, lock files, and development containers to ensure the development environment is repeatable.
+Document the commands required to install dependencies, run the application, execute tests, lint the code, and perform other common development operations in the appropriate repository documentation, `AGENTS.md`, or skills. Where appropriate, use files, tools, and conventions such as `pyproject.toml`, lock files, and development containers to ensure the development environment can be reproduced.
 
-Many apparent AI failures are really environment failures. An agent cannot reliably verify its own work if the repository cannot be reliably built or tested.
+Remember that agent (and people) cannot reliably verify work if the repository cannot be reliably built or tested.
 
 ### .ignore Files
 
-Do not rely on .gitignore or a tool-specific .ignore file as a security boundary. `.gitignore` controls what Git tracks, not what an AI coding agent can necessarily access. While some AI coding tools have dedicated `.ignore` files, Codex does not officially honor them. For non-security sensitive project context and instructions about which files matter for which tasks, use `AGENTS.md`. For security sensitive files, see below.
+Do not rely on `.gitignore` or a tool-specific `.ignore` file as a security mechanism. `.gitignore` controls what Git tracks rather than what an agent can necessarily access. While some AI coding tools have dedicated `.ignore` files, Codex does not officially honor them. For non-security sensitive project context and instructions about which files matter for which tasks, use `AGENTS.md`. For security sensitive files, see below.
 
 ## Security
 
@@ -209,21 +223,19 @@ DATABASE_URL=
 
 documents which values the application expects without exposing the values themselves.
 
-Remember that `.gitignore` is a convenience, not a security mechanism. It can help prevent accidental commits, but it does not protect a secret that has already been committed.
-
-If a secret is accidentally committed, assume that it has been exposed. Removing it from the latest version of the file is not sufficient because it might remain in Git history, logs, caches, forks, backups, or other copies. Revoke or rotate the credential immediately.
+If a secret is accidentally committed it must now be assumed to be exposed and compromised. Removing it from the latest version of the file is not sufficient because it might remain in Git history, logs, caches, forks, backups, or other copies. Revoke or rotate the credential immediately.
 
 ### Apply the Principle of Least Privilege
 
-Credentials should have only the permissions required for the task they perform. For example, an application that only needs to read data should not use credentials with permission to modify or delete that data. A development API key should not automatically have administrative access to production systems.
+Credentials should have only the permissions required for the task they support. For example, an application that only needs to read data should not use credentials with permission to modify or delete that data. A development API key should not have administrative access to production systems.
 
-Separate development, testing, and production credentials when possible. This limits the consequences of a mistake and makes it less likely that experimental code, an AI-generated command, or a local development environment can affect a production system.
+In professional environments, separate development, testing, and production credentials when possible. This limits the consequences of a mistake and makes it less likely that experimental code, an AI-generated command, or a local development environment can affect a production system.
 
-Prefer short-lived credentials, scoped tokens, and automatically rotated credentials when the infrastructure supports them. A credential that expires quickly and has limited permissions creates a smaller security risk than a permanent credential with broad access.
+Prefer short-lived credentials, scoped tokens, and automatically-rotated credentials when the infrastructure you are using supports them. A credential that expires quickly and has limited permissions creates a smaller security risk than a permanent credential with broad access.
 
 ### Do Not Share Secrets with AI Tools
 
-Do not paste passwords, API keys, authentication headers, private keys, `.env` files, production connection strings, or other credentials into prompts. An AI coding agent does not need to know the value of a secret. It only needs to know how the application accesses it.
+**Do not paste passwords, API keys, authentication headers, private keys, `.env` files, production connection strings, or any other credentials into prompts**. An AI coding agent does not need to know the value of a secret. It only needs to know how the application accesses it.
 
 For example, tell the agent,
 
@@ -231,13 +243,13 @@ For example, tell the agent,
 "The application reads the OpenAI API key from the OPENAI_API_KEY environment variable."
 ```
 
-rather than providing the API key itself.
+rather than providing the API key itself!
 
-Be equally careful when providing logs, configuration files, screenshots, notebooks, database exports, or error messages to AI tools. These artifacts can contain sensitive information even when the secret is not obvious. Before providing data to an AI tool, understand what information you are providing and whether you are authorized to provide it.
+Be equally careful when providing logs, configuration files, screenshots, notebooks, database exports, or error messages to AI tools. These artifacts can contain sensitive information even when the secret is not obvious. Before providing data to an AI tool, understand what information you are providing and whether you are authorized to provide it (e.g., by your university or workplace intellectual property and privacy polices).
 
 ### Protect Secrets in Logs and Debugging Output
 
-Secrets can be exposed even when they are not stored in source code. Be careful with `print` statements, logging calls, exception messages, stack traces, notebooks, screenshots, CI/CD output, generated reports, and debugging tools. Avoid printing complete authentication headers, tokens, connection strings, or environment variables.
+Secrets can be exposed even when they are not stored in source code. Be careful with `print` statements, logging calls, exception messages, stack traces, notebooks, screenshots, CI/CD output, generated reports, and debugging tools. Avoid printing authentication headers, tokens, connection strings, or environment variables.
 
 For example, debugging code like
 
@@ -245,7 +257,7 @@ For example, debugging code like
 print(os.environ)
 ```
 
-might expose every credential available to the process. Mask or redact sensitive values when they must appear in diagnostic output. Logging enough information to diagnose a failure does not require logging every piece of information available to the application. Remember that logs often persist much longer than the process that created them and might be accessible to more people than the original application.
+might expose credentials available to the process. Redact sensitive values when they must appear in diagnostic output.  Remember that logs often persist much longer than the process that created them and might be accessible to more people than the original application, violating the principle of least privilege if information leaks across security borders through the logs.
 
 ### (In This Class) Use Environment Variables for Secrets
 
@@ -264,27 +276,21 @@ DATABASE_URL=
 
 **Do not** print secrets in logs, screenshots, debugging output, or assignment submissions.
 
-Use separate development credentials when possible and apply the principle of least privilege. Your credentials should have only the permissions needed for your project.
+Avoid passing secrets through command-line arguments because command histories, process inspection tools, or logs might expose them.
 
-**If you accidentally commit, publish, or otherwise expose a credential, treat it as compromised and follow the incident response procedure below.**
+**If you accidentally commit, publish, or otherwise expose a credential, treat it as compromised and follow the response procedure below.**
 
-You are not required to use a dedicated secrets management platform such as AWS Secrets Manager, Azure Key Vault, Google Cloud Secret Manager, or HashiCorp Vault for normal class projects. These systems become more important in production environments where applications are deployed, automated through CI/CD, shared across teams, or given access to sensitive resources.
+You are not required to use a dedicated secrets management platform such as AWS Secrets Manager, Azure Key Vault, Google Cloud Secret Manager, or HashiCorp Vault for normal class projects. However, you should be aware that these systems become more important in production environments where applications are deployed, automated through CI/CD, shared across teams, or given access to sensitive resources.
 
 ### (In Production) Use Secure Secret Storage in Deployment and CI/CD
 
-CI/CD systems and cloud platforms generally provide mechanisms for securely storing secrets and injecting them into a process at runtime. Examples include GitHub Actions Secrets, AWS Secrets Manager, Azure Key Vault, Google Cloud Secret Manager, and HashiCorp Vault. Use these mechanisms rather than placing credential values directly in repository files. Production systems should generally use an appropriate secrets management capability rather than copying credentials into configuration files manually.
-
-Treat CI/CD credentials as particularly sensitive. Automated workflows can often publish software, deploy infrastructure, modify repositories, or access production systems. Apply least privilege to these credentials and limit their scope to the operations the workflow actually requires.
-
-Avoid passing secrets through command-line arguments when possible because command histories, process inspection tools, or logs might expose them.
+CI/CD systems and cloud platforms generally provide mechanisms for securely storing secrets and injecting them into a process at runtime. Examples include GitHub Actions Secrets, AWS Secrets Manager, Azure Key Vault, Google Cloud Secret Manager, and HashiCorp Vault. Use these mechanisms rather than placing credential values directly in repository files. Production systems should generally use an appropriate secrets management capability approved by the business rather than copying credentials into configuration files manually.
 
 ### (In Production) Scan for Secrets and Respond Quickly to Exposure
 
-Use automated secret scanning as another layer of protection.
-
 Repository hosting platforms, pre-commit tools, and security scanners can identify many common credential formats before or after they are pushed. These tools are particularly valuable in AI-assisted workflows because coding agents can create and modify many files quickly.
 
-Automated scanning does not replace careful engineering. A scanner might fail to recognize a custom credential, proprietary token, or sensitive piece of configuration.
+Use automated scanning to augment, rather than replace, human review for security best practices. A scanner might fail to recognize a custom credential, proprietary token, or sensitive piece of configuration information.
 
 ### Responding to An Exposed Credential Incident
 
@@ -292,9 +298,9 @@ If a credential is exposed:
 
 1. Revoke or rotate the credential.
 2. Determine what permissions the credential had.
-3. Review whether it was used unexpectedly.
+3. Review whether it was used unexpectedly. Even if it did not appear to be used, assume it was compromised.
 4. Remove the credential from the repository and other accessible locations.
 5. Replace it with an appropriate environment variable or secrets management mechanism.
-6. Determine how the exposure occurred and modify the workflow to reduce the chance of recurrence.
+6. Determine how the exposure occurred and modify the workflow to prevent recurrence.
 
-Do not spend significant time trying to determine whether someone *probably* accessed the secret before rotating it. Once a credential has entered a public repository, shared chat, public log, or other uncontrolled location, treat it as compromised.
+Once a credential has entered a public repository, shared chat, public log, or other uncontrolled location, treat it as compromised information.
