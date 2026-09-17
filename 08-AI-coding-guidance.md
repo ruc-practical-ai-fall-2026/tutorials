@@ -117,14 +117,14 @@ Starting a chat with the intent of implementing a file loader and adding tests p
 Avoid vague prompts like `"build a deep learning framework"` and `"fix all errors"`. Provide context on what you are trying to do. For example, the prompts,
 
 ```text
-"I have an image dataset. I want to design a deep learning framework to classify the images.
-It must be able to add new classes quickly. Use representation learning strategies to enable few-shot addition of new classes.
-Recommend an approach before making changes."
+I have an image dataset. I want to design a deep learning framework to classify the images.
+It must be able to add new classes quickly. Use representation learning strategies to enable
+few-shot addition of new classes. Recommend an approach before making changes."
 ```
 
 ```text
-"There is an error in the loss function implementation in compute_loss.
-Fix the equation so it correctly implements mean square error loss."
+There is an error in the loss function implementation in compute_loss.
+Fix the equation so it correctly implements mean square error loss.
 ```
 
 will provide more specification than the former prompts. The more unique your work is, the more specific your prompts must be and the more context will be required. You can likely "one-shot" prompt a web front-end. It is less likely that you can one-shot prompt a niche algorithm for tokenization of a novel data source.
@@ -134,8 +134,8 @@ will provide more specification than the former prompts. The more unique your wo
 Codex can be just as valuable for inspecting code as it is for writing code. For unfamiliar code, start with prompts like
 
 ```text
-"I need to implement a change to the normalization functions in this repository.
-Read the relevant files and explain how they work before suggesting changes."
+I need to implement a change to the normalization functions in this repository.
+Read the relevant files and explain how they work before suggesting changes.
 ```
 
 before making any changes. Understand your repository first, be confident you know how the code works, what the major modules are and what they do, and what you need to change, before you request changes. Having full context on the repository yourself also facilitates keeping subsequent prompts more specific, since you know what changes to ask for in which components.
