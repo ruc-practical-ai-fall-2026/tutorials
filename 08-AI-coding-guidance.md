@@ -44,6 +44,14 @@ Similarly, know what *is* worth your time. There is no shame in doing a task man
 
 Occam's razor applies in math, AI, and software engineering. Avoid implementing an overly complicated solution through careless prompting or automation. Keep your solutions as simple as they must be but no simpler. Do not implement unnecessary features or layers of abstraction just because you have the tools to implement these faster. These design elements and features will still need to be tested and maintained, and the extra complexity, when not truly needed, will make the code more costly to maintain and change over time.
 
+### Code is a Liability
+
+Remember that code is a liability rather than an asset. It is better to have less of it! Every line of code written needs to be tested, maintained, documented, and introduces added complexity and inertia to a product which can raise the cost of future changes. Just because significant amounts of code can be written quickly with AI does not mean they should be. Strive to have the smallest amount of code required to achieve the desired result.
+
+## AI Disclosures
+
+Where required, disclose where AI was used in a project or paper. For example, some journals require authors to disclose if and where AI was used. Follow the disclosure guidelines for the recipients of your work and the environment you are working in.
+
 ## Innovation
 
 ### Use the Model as a Novelty Gauge
@@ -207,6 +215,10 @@ Remember that agent (and people) cannot reliably verify work if the repository c
 Do not rely on `.gitignore` or a tool-specific `.ignore` file as a security mechanism. `.gitignore` controls what Git tracks rather than what an agent can necessarily access. While some AI coding tools have dedicated `.ignore` files, Codex does not officially honor them. For non-security sensitive project context and instructions about which files matter for which tasks, use `AGENTS.md`. For security sensitive files, see below.
 
 ## Security
+
+### Only Install Trusted Skills and Plugins
+
+Beware of skills and plugins from unknown or untrusted authors. There are many skills available online. However, many are known to be malicious and may contain instructions that can compromise your project, computer, files, or privacy. Just because skills are written in natural language does not mean that they are inherently safer than software written in conventional programming languages. They can still contain malicious instructions which will be interpreted by models. Just as you would only install software from a trusted provider, only use skills (or other plugins) from trusted publishers. Investigate the publisher of any software or natural language instructions for agents, and ensure they are reputable before downloading and using anything from the internet.
 
 ### Never Commit Secrets
 
