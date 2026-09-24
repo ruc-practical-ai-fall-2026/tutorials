@@ -100,7 +100,7 @@ Automate tests and run tests often to make sure your code still works as you cha
 
 ### *"Build a Little Test a Little Learn a Lot"*
 
-This saying (from the famous RADM Wayne E. Meyer) has guided some of the biggest engineering projects in history. Let it guide your repository development. Do not develop large project features without testing. Learn from each test you conduct and feed the lessons back into your next iteration. Keep iterations short and avoid making too many changes without frequent testing to ensure the changes are anchored to the practical reality of the domain of application.
+This saying (from the famous Rear Admiral Wayne E. Meyer) has guided some of the biggest engineering projects in history. Let it guide your repository development. Do not develop large project features without testing. Learn from each test you conduct and feed the lessons back into your next iteration. Keep iterations short and avoid making too many changes without frequent testing to ensure the changes are anchored to the practical reality of the domain of application.
 
 ### Use End-to-End and Unit Level Tests
 
